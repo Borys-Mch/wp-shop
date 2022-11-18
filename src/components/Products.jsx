@@ -6,10 +6,12 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const getProducts = "products?per_page=20";
+  const perPage = "?per_page=20";
+  const pageNumber = "&page=1";
+  const getProducts = `products${perPage}${pageNumber}`;
 
   useEffect(() => {
-    fetch(`${publicApiConnect.url}${getProducts}${publicApiConnect.key}`)
+    fetch(`${publicApiConnect.url}${getProducts}&${publicApiConnect.key}`)
       .then((resp) => resp.json())
       .then((products) => setProducts(products))
       .catch((error) => setError(error.message))
